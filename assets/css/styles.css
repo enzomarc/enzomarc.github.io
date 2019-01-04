@@ -12,7 +12,8 @@ html, body {
 
 body {
     background-color: #000314;
-    color: #0D49BC;
+    color: #559ce8;
+    /* #0D49BC */
     font-family: "Averta Standard", "Segoe UI", sans-serif;
 }
 
@@ -35,7 +36,7 @@ div.desktop.content div.socials {
 div.desktop.content div.socials a {
     text-align: center;
     margin: .8em 1em;
-    color: #0D49BC;
+    color: #559ce8;
     transition: all .3s;
 }
 
@@ -81,7 +82,7 @@ div.desktop.content div.one nav ul a {
     text-align: center;
     font-size: .8em;
     font-weight: 900;
-    color: #0D49BC;
+    color: #559ce8;
     text-decoration: none;
     margin: 3em 0;
     transition: all .3s;
@@ -131,7 +132,7 @@ div.mobile.content div.socials {
 div.mobile.content div.socials a {
     text-align: center;
     margin: 0 1em;
-    color: #0D49BC;
+    color: #559ce8;
     transition: all .3s;
 }
 
@@ -297,7 +298,7 @@ div.contact div.informations span {
 div.contact div.informations a {
     text-decoration: none;
     font-size: .9em;
-    color: #0D49BC;
+    color: #559ce8;
     transition: all .3s;
 }
 
