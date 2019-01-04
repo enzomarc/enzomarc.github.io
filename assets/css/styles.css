@@ -253,7 +253,7 @@ div.contact div.form {
 
 div.contact div.form input, div.contact div.form textarea {
     background: transparent;
-    border: solid 1px #0F0A69;
+    border: solid 1px #3B6CC9;
     border-radius: 0;
     padding: 1.5em;
     font-size: .9em;
@@ -273,7 +273,7 @@ div.contact div.form div.btn.row {
 
 div.contact div.form div.btn.row button {
     background: transparent;
-    border: solid 1px #0F0A69;
+    border: solid 1px #3B6CC9;
     border-radius: 0;
     color: #0D49BC;
     font-size: .6em;
