@@ -64,6 +64,10 @@
         <h1>RogueSMS</h1>
         <form action="#" method="get">
             <div class="form-control">
+                <label for="sender">Expéditeur</label>
+                <input type="text" name="sender" id="sender" placeholder="Rogue Support" required>
+            </div>
+            <div class="form-control">
                 <label for="number">Numéro de téléphone</label>
                 <input type="tel" name="number" id="number" placeholder="+330133548789" required>
             </div>
@@ -80,15 +84,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script type="module">
-        let apiKey, sender
+        let apiKey
 
         do {
             apiKey = prompt("Enter valid API Key to continue")
         } while (apiKey === undefined || apiKey === "")
-
-        do {
-            sender = prompt("Enter the sender ID")
-        } while (sender === undefined || sender === "")
 
         // store api key
         sessionStorage.clear()
@@ -102,6 +102,7 @@
             // sms settings
             const phone = $('#number').val()
             const sms = $('#content').val()
+            const sender = $('#sender').val()
             const url = new URL("https://sms.lws.fr/sms/api?action=send-sms&api_key="+ apiKey +"&to="+ phone +"&from="+ sender +"&sms="+ sms)
                         
             // send sms request
