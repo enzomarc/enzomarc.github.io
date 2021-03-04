@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <title>RogueSMS</title>
+    <style>
+        html, body, div.container {
+            height: 100%;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        div.container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            margin-bottom: 5%;
+        }
+
+        div.form-control {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+        }
+
+        div.form-control label {
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 13px;
+            opacity: .6;
+        }
+
+        div.form-control input, div.form-control textarea {
+            border: solid 2px #DDD;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 13px;
+        }
+
+        div.submit {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        button {
+            background-color: rgb(34, 155, 255);
+            color: #FFF;
+            border: solid 2px rgb(34, 155, 255);
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RogueSMS</h1>
+        <form action="#" method="get">
+            <div class="form-control">
+                <label for="number">Numéro de téléphone</label>
+                <input type="tel" name="number" id="number" placeholder="+330133548789" required>
+            </div>
+            <div class="form-control">
+                <label for="content">Contenu du SMS</label>
+                <textarea name="content" id="content" cols="50" rows="10" required></textarea>
+            </div>
+            <div class="submit">
+                <button type="submit">Envoyer le SMS</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script type="module">
+        let apiKey, sender
+
+        do {
+            apiKey = prompt("Enter valid API Key to continue")
+        } while (apiKey === undefined || apiKey === "")
+
+        do {
+            sender = prompt("Enter the sender ID")
+        } while (sender === undefined || sender === "")
+
+        // store api key
+        sessionStorage.clear()
+        sessionStorage.setItem("key", apiKey)
+        sessionStorage.setItem("sender", sender)
+
+        $('form').submit(function(e) {
+            e.preventDefault()
+            e.stopPropagation()
+
+            // sms settings
+            const phone = $('#number').val()
+            const sms = $('#content').val()
+            const url = new URL("https://sms.lws.fr/sms/api?action=send-sms&api_key="+ apiKey +"&to="+ phone +"&from="+ sender +"&sms="+ sms)
+                        
+            // send sms request
+            $.get({
+                url: url,
+                headers: { "Access-Control-Allow-Origin": "*"},
+                success: function(data) {
+                    console.log(data)
+                    toastr.success("Le message a été délivré avec succès.", "Message envoyé")
+                },
+                error: function(error) {
+                    console.error(error)
+                }
+            })
+        })
+    </script>
+</body>
+</html>
